@@ -121,7 +121,7 @@ func (m *MemoryStore) Increment(ctx context.Context, key string, delta int64) (i
 	}
 
 	newValue := current + delta
-	m.items[key] = &cacheItem{
+	m.items[key] = &item{
 		value:      newValue,
 		expiration: 0,
 	}
