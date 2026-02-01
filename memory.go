@@ -111,11 +111,11 @@ func (m *MemoryStore) Increment(ctx context.Context, key string, delta int64) (i
 	m.mu.Lock()
 	defer m.mu.Unlock()
 
-	item, found := m.items[key]
+	existingItem, found := m.items[key]
 	var current int64
 
-	if found && !item.isExpired() {
-		if val, ok := item.value.(int64); ok {
+	if found && !existingItem.isExpired() {
+		if val, ok := existingItem.value.(int64); ok {
 			current = val
 		}
 	}
